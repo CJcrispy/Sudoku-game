@@ -1,7 +1,7 @@
 # Sudoku-game
 First Python Project
 
-![Sudoku Game](https://github.com/CJcrispy/Sudoku-game/images/sudoku.PNG)
+![Sudoku Game](https://github.com/CJcrispy/Sudoku-game/blob/master/images/sudoku.PNG)
 
 ### About
 A simple sudoku project with auto completion. It uses a backtracking alogrithm as the sudoku solver
@@ -19,9 +19,10 @@ numpy
 
 ### Playing
 There are 2 version to play: 
-    - A blank Grid
-    ![blank grid](https://github.com/CJcrispy/Sudoku-game/images/sudoku_blank.PNG)
 
-    - A random Grid
-    ![radnom grid](https://github.com/CJcrispy/Sudoku-game/images/sudoku_random.PNG)
+A blank Grid
+![blank grid](https://github.com/CJcrispy/Sudoku-game/blob/master/images/sudoku_blank.PNG)
+
+A random Grid
+![radnom grid](https://github.com/CJcrispy/Sudoku-game/blob/master/images/sudoku_random.PNG)
 
