@@ -2,6 +2,7 @@ import pygame
 import time
 import random
 from sudokuLogic import *
+from gridGenerator import *
 pygame.font.init()
  
 display_width = 800
@@ -10,10 +11,12 @@ display_height = 600
 black = (0,0,0)
 white = (255,255,255)
 red = (200,0,0)
-green = (0,200,0)
+green = (0, 179, 127)
+blue = (1, 79, 191)
  
 bright_red = (255,0,0)
-bright_green = (0,255,0)
+bright_green = (0, 233, 127)
+bright_blue = (0, 131, 191)
 
 block_color = (53,115,255)
  
@@ -23,7 +26,7 @@ gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('Sudoku')
 clock = pygame.time.Clock()
  
-carImg = pygame.image.load('loading.gif')
+carImg = pygame.image.load('images\loading.gif')
  
  
 def things_dodged(count):
@@ -94,17 +97,10 @@ def game_intro():
 
 
         button("Blank Board",150,450,100,50,green,bright_green,sudokuBlank)
-        button("Play",550,450,100,50,red,bright_red,sudokuFilled)
-
-        pygame.draw.rect(gameDisplay, red,(550,450,100,50))
+        button("Play Random",550,450,100,50,blue,bright_blue,sudokuFilled)
 
         pygame.display.update()
         clock.tick(15)
-        
-        
-    
-    
-
     
 def game_loop():
     x = (display_width * 0.45)

@@ -1,22 +1,17 @@
+from random import shuffle
+import json
+import copy
 import pygame
+import random
 import time
+import numpy as np
+
 pygame.font.init()
 
 #Class for setting up a blank sudoku grid
 class blankGrid:
     
     #Sudoku game board
-    # board = [
-    #     [7, 8, 0, 4, 0, 0, 1, 2, 0],
-    #     [6, 0, 0, 0, 7, 5, 0, 0, 9],
-    #     [0, 0, 0, 6, 0, 1, 0, 7, 8],
-    #     [0, 0, 7, 0, 4, 0, 2, 6, 0],
-    #     [0, 0, 1, 0, 5, 0, 9, 3, 0],
-    #     [9, 0, 4, 0, 6, 0, 0, 0, 5],
-    #     [0, 7, 0, 3, 0, 0, 0, 1, 2],
-    #     [1, 2, 0, 0, 0, 7, 4, 0, 0],
-    #     [0, 4, 9, 2, 0, 6, 0, 0, 7]
-    # ]
     board = [[0 for i in range(9)] for j in range(9)]
 
     def __init__(self, rows, cols, width, height, win):
@@ -152,23 +147,18 @@ class blankGrid:
 class randomGrid:
     
     #Sudoku game board
-    board = [
-        [7, 8, 0, 4, 0, 0, 1, 2, 0],
-        [6, 0, 0, 0, 7, 5, 0, 0, 9],
-        [0, 0, 0, 6, 0, 1, 0, 7, 8],
-        [0, 0, 7, 0, 4, 0, 2, 6, 0],
-        [0, 0, 1, 0, 5, 0, 9, 3, 0],
-        [9, 0, 4, 0, 6, 0, 0, 0, 5],
-        [0, 7, 0, 3, 0, 0, 0, 1, 2],
-        [1, 2, 0, 0, 0, 7, 4, 0, 0],
-        [0, 4, 9, 2, 0, 6, 0, 0, 7]
-    ]
-    # board = [[0 for i in range(9)] for j in range(9)]
+    try:
+        with open('src\puzzles\sudoku.json', encoding='utf-8') as f:
+            data = json.loads(f.read())
+    except ValueError as e:
+        print("sudoku.py(): Error in sudoku.json file")
+        print("{}".format(e))
+    board = np.array(data['puzzle'][random.randint(0,len(data['puzzle']))], dtype=np.uint8)
 
     def __init__(self, rows, cols, width, height, win):
         self.rows = rows
         self.cols = cols
-        self.cubes = [[randomCube(self.board[i][j], i, j, width, height) for j in range(cols)] for i in range(rows)]
+        self.cubes = [[blankCube(self.board[i][j], i, j, width, height) for j in range(cols)] for i in range(rows)]
         self.width = width
         self.height = height
         self.model = None
@@ -293,7 +283,6 @@ class randomGrid:
                 pygame.time.delay(100)
 
         return False
-
 
 #Class for setting up each cube in the sudoku grid
 class blankCube:
